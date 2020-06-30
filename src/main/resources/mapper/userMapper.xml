@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cinda.user.mapper.UserMapper">
+
+    <select id="findByName" parameterType="String" resultType="User">
+        select id,role,username,password,avatar,is_man,birthday,mobile,email,gmt_create,gmt_modified
+        from user where username=#{username} and is_deleted = 0
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="User">
+        select * from user where user_id=#{id} and is_deleted = 0
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into user(role,username,password,avatar,is_man,birthday,mobile,email,gmt_create,gmt_modified)
+        values(#{role},#{username},#{password},#{avatar},#{isMan},#{birthday},#{mobile},#{email},current_time ,current_time )
+    </insert>
+
+    <update id="updateUser" parameterType="User" >
+        update user
+        <set>
+            <if test="role!=null">password=#{role},</if>
+            <if test="password!=null">password=#{password},</if>
+            <if test="username!=null">username=#{username},</if>
+            <if test="avatar!=null">avatar=#{avatar},</if>
+            <if test="isMan!=null">gender=#{is_man},</if>
+            <if test="birthday!=null">birthday=#{birthday},</if>
+            <if test="mobile!=null">mobile=#{mobile},</if>
+            <if test="email!=null">email=#{email},</if>
+            gmt_modified=current_time
+        </set>
+        WHERE id=#{id} and is_deleted = 0
+    </update>
+
+    <update id="deleteUser" parameterType="Integer">
+        update user set is_deleted=1 where id=#{id}
+    </update>
+
+    <select id="getUserList" resultType="User">
+        select id,role,username,password,avatar,is_man,birthday,mobile,email,gmt_create,gmt_modified  from user where is_deleted = 0
+    </select>
+</mapper>
