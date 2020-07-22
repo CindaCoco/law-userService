@@ -21,4 +21,6 @@ public interface RoleMapper {
     List<Role> getRoleList();
 
     Integer findIdByRole(String role);
+
+    String getPermissionIds(Integer id);
 }

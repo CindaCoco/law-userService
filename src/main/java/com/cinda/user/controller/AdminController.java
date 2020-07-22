@@ -23,7 +23,7 @@ public class AdminController {
     @Resource
     RoleService roleServiceImpl;
 
-    @PutMapping("admin/users")
+    @PutMapping("/admin/users")
     public Object updateUser(@RequestBody UserVO userVO, HttpServletRequest request){
 
         boolean allowableAdmin = validate(request, "管理员");
@@ -42,7 +42,7 @@ public class AdminController {
     }
 
 
-    @DeleteMapping("admin/users")
+    @DeleteMapping("/admin/users")
     public Object deleteUser(@RequestParam Integer id, HttpServletRequest request){
         boolean allowableAdmin = validate(request, "管理员");
         if(!allowableAdmin){
@@ -56,7 +56,7 @@ public class AdminController {
         return ResponseUtil.customization(502, "删除失败");
     }
 
-    @GetMapping("admin/users")
+    @GetMapping("/admin/users")
     public Object getUserList(HttpServletRequest request){
         boolean allowableAdmin = validate(request, "管理员");
         if(!allowableAdmin){
@@ -70,6 +70,7 @@ public class AdminController {
 
     private boolean validate(HttpServletRequest request, String requireRole){
         String currentUserString = request.getHeader("user");
+        log.info("当前用户："+currentUserString);
         User currentUser = JSON.parseObject(currentUserString,User.class);
         String role = roleServiceImpl.getRoleNameById(currentUser.getRole());
         log.info("当前登录用户角色为"+role);

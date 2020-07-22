@@ -37,6 +37,6 @@
     </update>
 
     <select id="getUserList" resultType="User">
-        select id,role,username,password,avatar,is_man,birthday,mobile,email,gmt_create,gmt_modified  from user where is_deleted = 0
+        select id,role,username,password,avatar,is_man,birthday,mobile,email,gmt_create,gmt_modified,is_deleted  from user where is_deleted = 0
     </select>
 </mapper>

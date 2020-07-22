@@ -7,6 +7,9 @@
         from role where id=#{id} and is_deleted = 0
     </select>
 
+    <select id="getPermissionIds" parameterType="Integer" resultType="String">
+        select permissions from role where id = #{id}
+    </select>
 
     <insert id="addRole" parameterType="Role">
         insert into role(role_name,permissions,gmt_create,gmt_modified)

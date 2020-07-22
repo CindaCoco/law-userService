@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
             return ResponseUtil.customization(610, "用户已存在");
         }
         user.setUsername(username);
+        user.setRole(1);
         Boolean success = userMapper.addUser(user);
         if(success){
             return ResponseUtil.customization(200, "注册成功");
@@ -55,6 +56,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         Integer roleId = roleMapper.findIdByRole(userVO.getRole());
         user.setRole(roleId);
+        user.setId(userVO.getId());
         user.setPassword(userVO.getPassword());
         user.setUsername(userVO.getUsername());
         user.setAvatar(userVO.getAvatar());
@@ -71,6 +73,7 @@ public class UserServiceImpl implements UserService {
         String role = roleMapper.findRoleById(user.getRole()).getRoleName();
         userVO.setRole(role);
         userVO.setPassword(user.getPassword());
+        userVO.setId(user.getId());
         userVO.setUsername(user.getUsername());
         userVO.setAvatar(user.getAvatar());
         userVO.setIsMan(user.getIsMan());
