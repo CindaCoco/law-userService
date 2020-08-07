@@ -3,7 +3,7 @@
 <mapper namespace="com.cinda.user.mapper.RoleMapper">
 
     <select id="findRoleById" parameterType="Integer" resultType="Role">
-        select id,role_name,permissions,gmt_create,gmt_modified,is_deleted
+        select id,role_name,permissions,description,gmt_create,gmt_modified,is_deleted
         from role where id=#{id} and is_deleted = 0
     </select>
 
@@ -12,7 +12,7 @@
     </select>
 
     <insert id="addRole" parameterType="Role">
-        insert into role(role_name,permissions,gmt_create,gmt_modified)
+        insert into role(role_name,permissions,description,gmt_create,gmt_modified)
         values(#{roleName},#{permissions},current_time,current_time)
     </insert>
 
@@ -31,7 +31,7 @@
     </update>
 
     <select id="getRoleList" resultType="Role">
-        select id,role_name,permissions,gmt_create,gmt_modified,is_deleted  from role where is_deleted = 0
+        select id,role_name,permissions,description,gmt_create,gmt_modified,is_deleted  from role where is_deleted = 0
     </select>
 
     <select id="findIdByRole" resultType="Integer">

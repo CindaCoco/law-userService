@@ -22,4 +22,5 @@ public class RoleController {
         Integer roleId = user.getRole();
         return ResponseUtil.ok(roleServiceImpl.getPermissionIds(roleId));
     }
+
 }

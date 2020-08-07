@@ -2,6 +2,7 @@ package com.cinda.user.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.cinda.user.controller.vo.UserVO;
+import com.cinda.user.domain.po.Role;
 import com.cinda.user.domain.po.User;
 import com.cinda.user.service.RoleService;
 import com.cinda.user.service.UserService;
@@ -24,15 +25,13 @@ public class AdminController {
     RoleService roleServiceImpl;
 
     @PutMapping("/admin/users")
-    public Object updateUser(@RequestBody UserVO userVO, HttpServletRequest request){
+    public Object updateUser(@RequestBody User user, HttpServletRequest request){
 
         boolean allowableAdmin = validate(request, "管理员");
         boolean allowableGov = validate(request, "政府工作人员");
         if(!allowableAdmin && !allowableGov){
             return ResponseUtil.customization(701,"用户无权限");
         }
-
-        User user=userServiceImpl.voToUser(userVO);
 
         Boolean success = userServiceImpl.updateUser(user);
         if(success) {
@@ -67,6 +66,15 @@ public class AdminController {
         return ResponseUtil.customization(200, "返回用户列表成功", userVOList);
     }
 
+    @GetMapping("admin/roles")
+    public Object getRoleList(HttpServletRequest request){
+        boolean allowableAdmin = validate(request, "管理员");
+        if(!allowableAdmin){
+            return ResponseUtil.customization(701, "用户无权限");
+        }
+        List<Role> roleList = roleServiceImpl.getRoles();
+        return ResponseUtil.customization(200, "返回角色列表成功", roleList);
+    }
 
     private boolean validate(HttpServletRequest request, String requireRole){
         String currentUserString = request.getHeader("user");

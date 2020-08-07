@@ -1,6 +1,7 @@
 package com.cinda.user.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.cinda.user.domain.po.Role;
 import com.cinda.user.mapper.PermissionMapper;
 import com.cinda.user.mapper.RoleMapper;
 import com.cinda.user.service.RoleService;
@@ -37,5 +38,10 @@ public class RoleServiceImpl implements RoleService {
             result.add(permissionMapper.getDescriptionById(roleId));
         }
         return result;
+    }
+
+    @Override
+    public List<Role> getRoles() {
+        return roleMapper.getRoleList();
     }
 }

@@ -23,7 +23,7 @@
             <if test="password!=null">password=#{password},</if>
             <if test="username!=null">username=#{username},</if>
             <if test="avatar!=null">avatar=#{avatar},</if>
-            <if test="isMan!=null">gender=#{is_man},</if>
+            <if test="isMan!=null">is_man=#{isMan},</if>
             <if test="birthday!=null">birthday=#{birthday},</if>
             <if test="mobile!=null">mobile=#{mobile},</if>
             <if test="email!=null">email=#{email},</if>

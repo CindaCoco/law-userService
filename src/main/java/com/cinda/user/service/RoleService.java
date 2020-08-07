@@ -1,5 +1,6 @@
 package com.cinda.user.service;
 
+import com.cinda.user.domain.po.Role;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface RoleService {
     Integer getIdByName(String name);
 
     List<String> getPermissionIds(Integer id);
+
+    List<Role> getRoles();
 }

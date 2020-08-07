@@ -1,6 +1,5 @@
 package com.cinda.user.domain.po;
 
-import com.cinda.user.controller.vo.UserVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +12,6 @@ import java.time.LocalDateTime;
 @Data
 @Alias("User")
 public class User {
-
-
     private Integer id;
     /**
      * 用户的角色

@@ -15,6 +15,7 @@ public class Role {
     Integer id;
     String roleName;
     String permissions;
+    String description;
     LocalDateTime gmtCreate;
     LocalDateTime gmtModified;
     Boolean isDeleted;
